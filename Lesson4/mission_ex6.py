@@ -24,6 +24,7 @@ class Timer:
         self.stop_button.pack(side=tk.LEFT)
         
     def start_timer(self):
+        self.start_button["state"]="disable"
         self.countdown()
     def countdown(self):
         if self.time_left> 0:

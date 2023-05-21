@@ -15,6 +15,7 @@ class Timer:
         self.stop_button = tk.Button(self.root, text="Stop", command=self.stop_timer)
         self.stop_button.pack(side=tk.LEFT)
     def start_timer(self):
+        self.start_button["state"]="disable"
         self.countdown()
     def countdown(self):
         if self.time_left> 0:
@@ -28,6 +29,7 @@ class Timer:
     def stop_timer(self):
         if self.id is not None:
             self.root.after_cancel(self.id)#指定されたidのafterをキャンセルする。
+            self.start_button["state"]="normal"
             id=None
 
 if __name__ == "__main__":
