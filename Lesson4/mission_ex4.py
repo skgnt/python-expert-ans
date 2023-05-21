@@ -29,7 +29,7 @@ class Timer:
     def stop_timer(self):
         if self.id is not None:
             self.root.after_cancel(self.id)#指定されたidのafterをキャンセルする。
-            self.start_button["state"]="normal"
+            self.start_button["state"]="normal"#ボタンを有効化する。
             id=None
 
 if __name__ == "__main__":

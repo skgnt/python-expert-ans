@@ -13,7 +13,7 @@ class Timer:
         self.stop_button = tk.Button(self.root, text="Stop", command=self.stop_timer)
         self.stop_button.pack(side=tk.LEFT)
     def start_timer(self):
-        self.start_button["state"]="disable"
+        self.start_button["state"]="disable"#ボタンを無効化する。
         self.countdown()
     def countdown(self):
         if self.time_left> 0:
