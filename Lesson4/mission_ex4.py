@@ -1,8 +1,10 @@
 import tkinter as tk
 
+
 class Timer:
     def __init__(self, root):
         self.root = root
+        self.id=None
         self.root.title("Timer")
         self.root.geometry("300x200")
         self.time_left = 60 # 初期値を60秒とする
@@ -17,13 +19,16 @@ class Timer:
     def countdown(self):
         if self.time_left> 0:
             self.label.config(text="{:.2f}".format(self.time_left))
-            self.time_left-=0.01#カウント数を減らす。
-            self.root.after(10, self.countdown)#実行間隔を減らす
-            #これぐら実行感覚が狭くなると表示の書き換えなどで人間が分かるくらいカウントが遅れることがある
+            self.time_left-=0.1
+            self.id=self.root.after(100, self.countdown)#afterのidを記録
+            if self.time_left<=20:
+                self.root.config(bg="yellow")
         else:
             self.label.config(text="Time's up!")
     def stop_timer(self):
-        self.time_left = 0
+        if self.id is not None:
+            self.root.after_cancel(self.id)#指定されたidのafterをキャンセルする。
+            id=None
 
 if __name__ == "__main__":
     root = tk.Tk()
