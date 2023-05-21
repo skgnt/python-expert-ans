@@ -1,10 +1,8 @@
 import tkinter as tk
 
-
 class Timer:
     def __init__(self, root):
         self.root = root
-        self.id=None
         self.root.title("Timer")
         self.root.geometry("300x200")
         self.time_left = 60 # 初期値を60秒とする
@@ -20,15 +18,13 @@ class Timer:
         if self.time_left> 0:
             self.label.config(text="{:.2f}".format(self.time_left))
             self.time_left-=0.1
-            self.id=self.root.after(100, self.countdown)#afterのidを記録
+            self.root.after(100, self.countdown)
             if self.time_left<=20:
                 self.root.config(bg="yellow")
         else:
             self.label.config(text="Time's up!")
     def stop_timer(self):
-        if self.id is not None:
-            self.root.after_cancel(self.id)#指定されたidのafterをキャンセルする。
-            id=None
+        self.time_left = 0
 
 if __name__ == "__main__":
     root = tk.Tk()
